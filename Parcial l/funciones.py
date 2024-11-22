@@ -1,27 +1,18 @@
-def cargar_pacientes(lista):
-     """Permite al usuario ingresar los datos de los pacientes"""
-     cargar = "s"
-     while cargar == "s":
-          num_historia = int(input("Ingrese el número de historia clinica del paciente: "))
-          nombre = str(input("Ingrese el nombre del paciente: "))
-          edad = int(input("Ingrese la edad del paciente: "))
-          diagnostico = str(input("Ingrese el diagnostico: "))
-          cant_dias = int(input("Ingrese la cantidad de dias de internacion: "))
-          datos = [num_historia, nombre, edad, diagnostico, cant_dias]
-          for i in range(len(lista)):
-               if lista[i] == []:
-                    lista[i] = datos
-                    break          
-          cargar = str(input("¿Desea seguir cargando datos?(s/n)")).lower()
+#Realizar una funcion que reciba:
+# -una lista (de letras de 'a' a 'h')
+# y un caracter
+# y retorne un entero
+#La funcion debe retornar la cantidad de veces que encuantra en la lista
+#El caracter pasado por parametro
+#El caracter que se pasa por parametro para buscar en la lista
+#se le debe solicitar al usuario
+#validar que sea una lista de la 'a' a la  'h'
+#No se pueden utilizar funciones propias
 
-     for i in range(len(lista)):
-          print(lista[i])
+def contar_caracteres(lista:list, caracter:str) -> int:
+     contador = 0
+     for letra in lista:
+          if letra == caracter:
+               contador += 1
+     return contador
 
-def mostrar_datos(lista):
-     """Muestra la lista con los datos de los pacientes"""
-     for i in range(len(lista)):
-          if lista[i] == []:
-               print("No se cargaron datos aún")
-               break
-          elif lista[i] != []:
-               print(lista[i], i+1)
