@@ -4,9 +4,9 @@ def leer_archivo(nombre:str):
     inventario = []
     with open(nombre, "r") as archivo:
         lineas = archivo.readlines()
-        for linea in lineas:
+        for linea in lineas[1:]:
             valores = linea.strip().split(',')
-            producto = [valores[0],valores[1],valores[2]]
+            producto = [valores[0],float(valores[1]),valores[2]]
             inventario.append(producto)
     return inventario
 
@@ -34,8 +34,9 @@ def ordenar_inventario(inventario:list, criterio:str):
 
 def listar_inventario(inventario:list):
     """Muestra los elementos en forma de matriz"""
+    print(f"{'Nombre':<40}{'Precio':<10}{'Cantidad':<10}")
     for productos in inventario:
-        print(f"{productos[0]:<20}{productos[1]:<10}{productos[2]:<10}")
+        print(f"{productos[0]:<40}${productos[1]:<10.2f}{productos[2]:<15}")
 
 def actualizar_cantidad(inventario:list, nombre_producto:str, cant_vendida:int):
     """Recibe por parametro un str(archivo) y actualiza la cantidad de un producto despues de una venta"""
@@ -60,6 +61,12 @@ def escribir_archivo(inventario:list, archivo_nuevo:str):
         for productos in inventario:
             archivo.write(f"{productos[0]},{productos[1]},{productos[2]}\n")
     print(f"Inventario guardado en '{archivo_nuevo}'.")
+
+def mappear_precios(inventario:list):
+    """Incrementa los precios de todos los productos en un 10%"""
+    for productos in inventario:
+        productos[1] *= 1.10
+    print("Precios incrementados en un 10%.")
 
 # Funcion extra
 def swap(lista:list, pos1:int, pos2:int):
